@@ -1,0 +1,12 @@
+<?php
+
+/**
+ * Implements hook_media_wysiwyg_token_to_markup_alter().
+ */
+function fixmediawysiwyg_media_wysiwyg_token_to_markup_alter(&$element, $tag_info, $settings) {
+  // Undo the damage done by #2194821
+  if (isset($element['content']['#type']) && $element['content']['#type'] == 'container') {
+    unset($element['content']['#type']);
+    unset($element['content']['#theme']);
+  }
+}
